@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SpendSmart</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <link rel="icon" type="image/png" href="../static/logo.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  </head>
+  <body>
+    <img id="logo" src="../static/logo.png">
+    <div class="add-sections">
+        <div class="add-expense-section">
+            <h2>Ajouter une dépense</h2>
+            <form id="add-expense-form">
+              <label for="expense-name">Nom de la dépense :</label>
+              <input type="text" id="expense-name" name="expense-name" required>
+              
+              <label for="expense-amount">Montant :</label>
+              <input type="number" id="expense-amount" name="expense-amount" required>
+              
+              <label for="expense-category">Catégorie :</label>
+              <select id="expense-category" name="expense-category">
+                <option value="essence">Essence</option>
+                <option value="nourriture">Nourriture</option>
+                <option value="loisirs">Loisirs</option>
+                <option value="assurance">Assurance</option>
+                <option value="commande">Commande</option>
+                <option value="virement">Virement</option>
+                <option value="epargne">Épargne</option>
+              </select>
+              
+              <label for="expense-date">Date :</label>
+              <input type="date" id="expense-date" name="expense-date" required>
+              
+              <button type="submit" class="add-button">Ajouter</button>
+            </form>
+        </div>
+        <div class="add-income-section">
+            <h2>Ajouter un revenu</h2>
+            <form id="add-income-form">
+              <label for="income-name">Nom du revenu :</label>
+              <input type="text" id="income-name" name="income-name" required>
+              
+              <label for="income-amount">Montant :</label>
+              <input type="number" id="income-amount" name="income-amount" required>
+              
+              <label for="income-date">Date :</label>
+              <input type="date" id="income-date" name="income-date" required>
+              
+              <button type="submit" class="add-button">Ajouter</button>
+            </form>
+        </div>
+        <div class="graphic">
+          <div class="choosedate">
+            <h2>Différentes dépenses</h2>
+            <input type="month" id="date-picker">
+            <button id="show-data-button" type="submit">Afficher les données</button>
+          </div>
+          <div class="canvascontainer">
+              <canvas id="report-chart"></canvas>
+          </div>
+        </div>
+        <div class="graphic">
+          <div class="choosedate">
+            <h2>Rapport dépenses revenus</h2>
+            <input type="month" id="date2-picker">
+            <button id="show-data2-button" type="submit">Afficher les données</button>
+          </div>
+          <div class="canvascontainer">
+              <canvas id="report2-chart"></canvas>
+          </div>
+        </div>
+      </div>
+      <footer>
+        SmartSpend Copyright
+      </footer>
+    
+    <!-- 
+    <h2>Rapport</h2>
+    <table id="report-table">
+      <tr>
+        <th>Nom</th>
+        <th>Montant</th>
+        <th>Catégorie</th>
+        <th>Date</th>
+      </tr>
+    </table>
+    -->
+    <script src="../static/script.js"></script>
+  </body>
+</html>
