@@ -52,32 +52,6 @@ addIncomeForm.addEventListener('submit', (event) => {
 
 addButton.addEventListener('click',()=>{location.reload()});
 
-//let table = document.getElementById("report-table");
-
-// Récupérer les données CSV
-//fetch('static/depenses.csv')
-//  .then(response => response.text())
-//  .then(data => {
-//    let depensesData = Papa.parse(data, { header: true }).data;
-    // Ajouter une ligne à la table pour chaque dépense
-//    let size = Object.keys(depensesData).length;
-//    let i = 1;
-//    depensesData.forEach((depense) => {
-//        if(size!=i) {
-//            i++;
-//            let row = table.insertRow(-1);
-//            let Nom = row.insertCell(0);
-//            let Montant = row.insertCell(1);
-//            let Categorie = row.insertCell(2);
-//            let Date = row.insertCell(3);
-//            Nom.innerHTML = depense.nom;
-//            Montant.innerHTML = depense.montant;
-//            Categorie.innerHTML = depense.categorie;
-//            Date.innerHTML = depense.date;
-//        }    
-//    });
-//  });
-
 // Sélectionner les éléments HTML nécessaires
 let datePicker = document.getElementById('date-picker');
 let showDataButton = document.getElementById('show-data-button');
@@ -249,3 +223,73 @@ show2DataButton.addEventListener('click', () => {
         });
     });
 });
+// Charger le fichier CSV en utilisant la bibliothèque papaparse
+// Supposons que le fichier CSV est stocké dans le fichier data.csv
+// Récupérer la référence de l'élément HTML qui va contenir le tableau
+const tableContainer = document.getElementById('table-container');
+tableContainer.classList.add('dark-theme'); // Ajouter la classe CSS
+
+// Charger les données CSV en utilisant fetch
+fetch('static/depenses.csv')
+  .then(response => response.text())
+  .then(data => {
+    // Transformer les données CSV en tableau d'objets
+    const rows = data.split('\n');
+    const headers = rows[0].split(',');
+    const result = [];
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i].split(',');
+      const obj = {};
+      for (let j = 0; j < headers.length; j++) {
+        if (row[j] !== undefined) {
+          obj[headers[j].trim()] = row[j].trim();
+        }
+      }
+      result.push(obj);
+    }
+    console.log(data);
+    // Créer le tableau en utilisant les données
+    const table = document.createElement('table');
+    table.setAttribute('id', 'table');
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
+
+   // Créer les en-têtes de colonne
+const headerRow = document.createElement('tr');
+const columns = ['categorie', 'nom', 'montant','date'];
+for (const column of columns) {
+  const th = document.createElement('th');
+  th.textContent = column;
+  headerRow.appendChild(th);
+}
+thead.appendChild(headerRow);
+
+// Ajouter les lignes de données
+for (const row of result) {
+  const tr = document.createElement('tr');
+  const cells = [    row['categorie'],
+    row['nom'],
+    row['montant'],
+    row['date']
+  ];
+  for (const cell of cells) {
+    const td = document.createElement('td');
+    td.textContent = cell;
+    tr.appendChild(td);
+  }
+  tbody.appendChild(tr);
+}
+
+    // Ajouter les éléments au tableau
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    tableContainer.appendChild(table);
+    // Ajouter les éléments au tableau
+    table.classList.add('no-border'); // Ajouter la classe CSS
+
+    // Initialiser le tableau DataTables
+    $(document).ready(function() {
+      $('#table').DataTable();
+    });
+  })
+  .catch(error => console.error(error));

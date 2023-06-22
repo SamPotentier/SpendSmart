@@ -7,8 +7,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" type="image/png" href="../static/logo.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
   </head>
   <body>
     <img id="logo" src="../static/logo.png">
@@ -75,21 +78,14 @@
           </div>
         </div>
       </div>
-      <footer>
-        SmartSpend Copyright
-      </footer>
-    
-    <!-- 
-    <h2>Rapport</h2>
-    <table id="report-table">
-      <tr>
-        <th>Nom</th>
-        <th>Montant</th>
-        <th>Catégorie</th>
-        <th>Date</th>
-      </tr>
-    </table>
-    -->
+      <div id="table-container">
+        <table id="my-table" class="display">
+            
+            <tbody>
+                <!-- Les données seront générées par JavaScript -->
+            </tbody>
+        </table>
+    </div>
     <script src="../static/script.js"></script>
   </body>
 </html>
