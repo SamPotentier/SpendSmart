@@ -142,7 +142,8 @@
   }
 
   .canvascontainer {
-    margin: auto;
+    /*TODO modif*/
+    margin-top: 10%;
     display: table;
   }
   #logo {
@@ -210,4 +211,28 @@
   #table-container {
     margin-bottom: 5vh;
     border-radius: 10px;
+  }
+
+  select[name=table_length] {
+    color:white;
+  }
+
+  select[name=table_length] > option {
+    background-color: #333;
+  }
+
+  label {
+    color:white;
+  }
+
+  input[type=search] {
+    color:white;
+  }
+
+  #table_info {
+    color:white !important;
+  }
+
+  #table_previous, #table_next{
+    color:white !important;
   }
